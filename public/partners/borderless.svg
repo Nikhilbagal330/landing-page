@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="28" viewBox="0 0 160 28" fill="none">
+  <title>Borderless</title>
+  <path d="M8 14c0-5 3.4-8 8.2-8 3.2 0 5.6 1.2 7.2 3.4l-2.6 2.2C19.6 9.8 18.2 9 16.4 9 13.8 9 12 11 12 14s1.8 5 4.4 5c1.8 0 3.2-.8 4.4-2.6l2.6 2.2C21.8 20.8 19.4 22 16.2 22 11.4 22 8 19 8 14Z" fill="#F4F4F5"/>
+  <text x="30" y="18" fill="#F4F4F5" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="600" letter-spacing="0.5">Borderless</text>
+</svg>

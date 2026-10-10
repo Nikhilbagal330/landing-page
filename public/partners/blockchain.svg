@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="168" height="28" viewBox="0 0 168 28" fill="none">
+  <title>Blockchain</title>
+  <path d="M14 4 22 8.5v9L14 22 6 17.5v-9L14 4Z" stroke="#F4F4F5" stroke-width="1.4"/>
+  <path d="M14 10v6M11 11.6 17 15M17 11.6 11 15" stroke="#F4F4F5" stroke-width="1.2"/>
+  <text x="30" y="18" fill="#F4F4F5" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="700" letter-spacing="1.2">BLOCKCHAIN</text>
+</svg>
