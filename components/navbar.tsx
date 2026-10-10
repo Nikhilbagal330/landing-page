@@ -2,6 +2,7 @@
 
 import { ChevronDown, Menu } from "lucide-react";
 import { useState } from "react";
+import { CornerMarks } from "@/components/corner-marks";
 import { toast } from "@/components/toaster";
 import { Button } from "@/components/ui/button";
 import {
@@ -29,10 +30,11 @@ type NavbarProps = {
 
 function DemoMark() {
   return (
-    <svg viewBox="0 0 32 32" className="size-7 text-white" aria-hidden>
-      <circle cx="16" cy="16" r="14.5" fill="none" stroke="currentColor" strokeWidth="1.4" />
-      <path d="M16 7.5 22.5 16 16 24.5 9.5 16Z" fill="currentColor" />
-    </svg>
+    <span className="grid size-[30px] place-items-center rounded-full bg-white">
+      <svg viewBox="0 0 28 28" className="size-[22px]" aria-hidden>
+        <path d="M14 4.6 22.2 14 14 23.4 5.8 14Z" fill="#030303" />
+      </svg>
+    </span>
   );
 }
 
@@ -42,22 +44,23 @@ export function Navbar({ name, links, networks, onConnect }: NavbarProps) {
 
   return (
     <header className="relative z-20">
-      <div className="mx-auto flex h-[72px] max-w-[1180px] items-center justify-between gap-3 px-4 sm:px-6">
-        <a href="#top" className="flex items-center gap-2.5">
+      <div className="mx-auto flex h-20 max-w-[1698px] items-center justify-between gap-3 px-4 sm:px-8 lg:h-[122px] xl:px-[156px]">
+        <a href="#top" className="flex items-center gap-2">
           <DemoMark />
-          <span className="text-lg font-medium tracking-tight">{name}</span>
+          <span className="text-xl leading-none font-semibold tracking-tight lg:text-[26px]">{name}</span>
         </a>
 
         <nav
           aria-label="Primary"
-          className="absolute left-1/2 hidden -translate-x-1/2 rounded-md border border-orange/30 bg-black/40 px-1 py-1 md:block"
+          className="relative hidden bg-[#23120C] px-8 py-2.5 md:block"
         >
-          <ul className="flex items-center">
+          <CornerMarks />
+          <ul className="flex items-center gap-8 lg:gap-14">
             {links.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="block rounded-sm px-4 py-1.5 text-sm text-zinc-200 hover:bg-white/5 hover:text-white"
+                  className="block text-sm tracking-[-0.02em] text-white/70 hover:text-white"
                 >
                   {link.label}
                 </a>
@@ -66,10 +69,10 @@ export function Navbar({ name, links, networks, onConnect }: NavbarProps) {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-4">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="sm" className="hidden sm:inline-flex">
+              <Button variant="outline" className="hidden h-[43px] px-[18px] text-base sm:inline-flex">
                 {network?.label ?? "Network"}
                 <ChevronDown className="size-3.5" aria-hidden />
               </Button>
@@ -89,7 +92,7 @@ export function Navbar({ name, links, networks, onConnect }: NavbarProps) {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <Button size="sm" onClick={onConnect}>
+          <Button className="h-[43px] px-[18px] text-base" onClick={onConnect}>
             Connect
           </Button>
 

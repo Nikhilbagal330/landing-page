@@ -26,7 +26,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
         toastOptions={{
           style: {
             background: "#121214",
-            border: "1px solid rgba(255, 76, 0, 0.45)",
+            border: "1px solid rgba(255, 69, 9, 0.45)",
             color: "#f4f4f5",
           },
         }}

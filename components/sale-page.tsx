@@ -87,11 +87,14 @@ export function SalePage() {
         <section
           id="sale"
           aria-label="Live IDO"
-          className="mx-auto grid max-w-[1180px] scroll-mt-6 gap-4 px-4 pt-4 pb-10 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-5 lg:pt-6"
+          className="mx-auto grid w-full max-w-[1386px] scroll-mt-6 items-start gap-8 px-4 pt-4 pb-16 sm:px-8 lg:grid-cols-[minmax(0,642px)_32px_minmax(0,680px)] lg:justify-center lg:gap-x-0 lg:px-0"
         >
           <motion.div {...cardMotion}>
             <Hero project={data.project} hero={data.hero} countdown={countdown} />
           </motion.div>
+          <div aria-hidden className="hidden self-stretch lg:flex lg:justify-center">
+            <div className="h-full w-px bg-[#541400]" />
+          </div>
           <motion.div
             {...cardMotion}
             transition={
@@ -102,47 +105,41 @@ export function SalePage() {
           >
             <SaleCard
               sale={data.sale}
-              countdown={countdown}
               onConnectWallet={() => setConnect("wallet")}
               onConnectSonar={() => setConnect("sonar")}
             />
           </motion.div>
         </section>
 
-        <PartnersStrip partners={data.partners} />
+        <PartnersStrip partners={data.partners} label={`${data.project.symbol} ${data.project.symbol}`} />
 
         <section
           id="timeline"
           aria-labelledby="timeline-heading"
-          className="relative mx-auto max-w-[1180px] scroll-mt-6 px-4 py-16 sm:px-6 sm:py-24"
+          className="relative mx-auto max-w-[1386px] scroll-mt-6 px-4 py-20 sm:px-8 lg:px-0"
         >
-          <p
-            aria-hidden
-            className="pointer-events-none absolute top-8 right-0 left-0 text-center text-[22vw] leading-none font-semibold tracking-tight text-orange/10 select-none sm:text-[12rem]"
-          >
-            {data.project.symbol}
-          </p>
-          <div className="relative grid items-start gap-12 lg:grid-cols-2 lg:gap-x-16">
-            <div>
-              <h2
-                id="timeline-heading"
-                className="text-3xl font-medium tracking-tight sm:text-4xl"
-              >
-                {data.timeline.heading}
-              </h2>
-              <p className="mt-3 max-w-md text-sm leading-6 text-muted">
-                {data.timeline.description}
-              </p>
+          <div className="relative grid items-start gap-12 lg:grid-cols-[477px_minmax(0,790px)] lg:justify-between lg:gap-x-[120px]">
+            <div className="flex flex-col gap-[54px]">
+              <div className="flex flex-col gap-4">
+                <h2
+                  id="timeline-heading"
+                  className="text-5xl leading-[58px] font-normal tracking-[-0.64px]"
+                >
+                  {data.timeline.heading}
+                </h2>
+                <p className="max-w-[477px] text-[22px] leading-[1.33] tracking-[0.01em] text-white/60">
+                  {data.timeline.description}
+                </p>
+              </div>
+              <CommitLinks commit={data.commit} />
             </div>
-            <div className="lg:row-span-2">
-              <TimelineSection timeline={data.timeline} details={data.details} />
-            </div>
-            <CommitLinks commit={data.commit} />
+            <TimelineSection timeline={data.timeline} details={data.details} />
           </div>
         </section>
 
         <SiteFooter
           socials={data.socials}
+          links={data.nav}
           contract={data.contract}
           symbol={data.project.symbol}
           disclaimer={data.footer.disclaimer}

@@ -1,4 +1,3 @@
-import { Badge } from "@/components/ui/badge";
 import { CountdownUnits } from "@/components/countdown-units";
 import { ProgressBar } from "@/components/progress-bar";
 import type { Countdown } from "@/hooks/use-countdown";
@@ -10,55 +9,115 @@ type HeroProps = {
   countdown: Countdown;
 };
 
+function MiniMeter({
+  label,
+  value,
+  start,
+  end,
+  progress,
+}: {
+  label: string;
+  value: string;
+  start: string;
+  end: string;
+  progress: number;
+}) {
+  return (
+    <div className="flex min-w-0 flex-1 flex-col gap-4 bg-black/40 p-2.5">
+      <div className="flex items-center justify-between gap-3 border-b border-[#541400] pb-2">
+        <span className="text-xs font-medium text-white">{label}</span>
+        <span className="text-sm text-orange">{value}</span>
+      </div>
+      <div className="flex flex-col gap-2">
+        <ProgressBar value={progress} label={label} />
+        <div className="flex justify-between text-sm text-white/80">
+          <span>{start}</span>
+          <span>{end}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function Hero({ project, hero, countdown }: HeroProps) {
   return (
-    <article className="rounded-md border border-orange/30 bg-black/45 p-5 shadow-[0_0_80px_rgba(255,76,0,0.06)] sm:p-7">
-      <Badge>{project.badge}</Badge>
-      <h1 className="mt-5 max-w-md text-4xl font-medium tracking-tight text-white sm:text-5xl">
-        {project.headline}
-      </h1>
-      <p className="mt-4 max-w-md text-sm leading-6 text-muted sm:text-[15px]">
-        {project.description}
-      </p>
-
-      <div className="mt-8 flex items-end justify-between gap-4">
-        <div>
-          <p className="text-xs text-muted">{hero.raisedLabel}</p>
-          <p className="mt-1 text-3xl font-medium tracking-tight">{hero.raisedDisplay}</p>
-        </div>
-        <div className="text-right">
-          <p className="text-xs text-muted">{hero.priceLabel}</p>
-          <p className="mt-1 text-3xl font-medium tracking-tight text-orange">
-            {hero.priceDisplay}
+    <article className="flex flex-col gap-10 pt-2">
+      <div className="flex flex-col gap-[27px]">
+        <p className="inline-flex h-7 w-[206px] items-center justify-center border border-orange bg-[rgba(2,6,11,0.26)] text-base tracking-[0.12em] text-orange backdrop-blur-[4px]">
+          {project.badge}
+        </p>
+        <div className="flex flex-col gap-5">
+          <h1 className="text-[40px] leading-[1.05] font-medium tracking-[-0.03em] text-white sm:text-[64px] sm:leading-[67px]">
+            {project.headline}
+          </h1>
+          <p className="line-clamp-2 text-xl leading-[1.33] text-white/60">
+            {project.description}
           </p>
         </div>
       </div>
 
-      <div className="mt-3 flex justify-between text-[11px] text-muted">
-        <span>{hero.progressStart}</span>
-        <span>{hero.progressEnd}</span>
-      </div>
-      <ProgressBar className="mt-1.5" value={hero.progress} label="Amount raised" />
-
-      <div className="mt-4 rounded-sm border border-orange/25 px-3 py-3">
-        <div className="mb-2 flex justify-between text-[11px] text-muted">
-          <span>{hero.allocation.start}</span>
-          <span>{hero.allocation.current}</span>
-          <span>{hero.allocation.end}</span>
+      <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-6">
+          <div className="flex items-end justify-between gap-4">
+            <div>
+              <p className="text-base tracking-[0.01em] text-white/80">{hero.raisedLabel}</p>
+              <p className="text-[32px] leading-[38px] font-medium text-ink">
+                {hero.raisedDisplay}
+              </p>
+            </div>
+            <div className="text-right">
+              <p className="text-base tracking-[0.01em] text-white/80">{hero.priceLabel}</p>
+              <p className="text-[32px] leading-[38px] font-medium text-orange">
+                {hero.priceDisplay}
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-col gap-2">
+            <ProgressBar value={hero.progress} label="Amount raised" />
+            <div className="flex justify-between text-sm text-white/80">
+              <span>{hero.progressStart}</span>
+              <span>{hero.progressEnd}</span>
+            </div>
+          </div>
         </div>
-        <ProgressBar value={hero.allocation.progress} label="Tokens allocated" />
-      </div>
 
-      <div className="mt-5">
-        <CountdownUnits countdown={countdown} />
-      </div>
+        <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 sm:flex-row">
+            <MiniMeter
+              label={hero.raisedLabel}
+              value={hero.raisedDisplay}
+              start={hero.progressStart}
+              end={hero.progressEnd}
+              progress={hero.progress}
+            />
+            <MiniMeter
+              label="Allocated"
+              value={hero.allocation.current}
+              start={hero.allocation.start}
+              end={hero.allocation.end}
+              progress={hero.allocation.progress}
+            />
+          </div>
 
-      <div className="mt-5 flex items-center gap-3 rounded-sm border border-orange/25 px-3 py-3">
-        <svg viewBox="0 0 24 24" className="size-4 shrink-0 text-orange" aria-hidden>
-          <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="1.4" />
-          <path d="M12 7v5l3 2" fill="none" stroke="currentColor" strokeWidth="1.4" />
-        </svg>
-        <p className="text-sm text-zinc-300">{hero.footnote}</p>
+          <div className="flex flex-col gap-1.5 border border-[#350F0F] bg-black px-3.5 py-4">
+            <p className="text-base tracking-[0.01em] text-white/80">{hero.footnote}</p>
+            <p className="text-[32px] leading-[38px] font-medium">{hero.allocation.current}</p>
+          </div>
+
+          <div className="flex flex-col gap-4 border border-[#350F0F] bg-black px-3.5 py-5 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-start gap-1.5">
+              <svg viewBox="0 0 24 24" className="size-6 shrink-0 text-[#F2F2F2]" aria-hidden>
+                <rect x="3.5" y="5" width="17" height="15.5" fill="none" stroke="currentColor" strokeWidth="1.4" />
+                <path d="M3.5 10h17M8 3.5v4M16 3.5v4" fill="none" stroke="currentColor" strokeWidth="1.4" />
+              </svg>
+              <div>
+                <p className="text-lg leading-6 font-medium text-white">{countdown.label}</p>
+                <p className="text-sm leading-5 text-white/80">{hero.footnote}</p>
+              </div>
+            </div>
+            <CountdownUnits countdown={countdown} />
+          </div>
+        </div>
       </div>
     </article>
   );

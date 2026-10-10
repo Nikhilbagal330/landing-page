@@ -10,19 +10,22 @@ const UNITS = [
 export function CountdownUnits({ countdown }: { countdown: Countdown }) {
   return (
     <div>
-      <p className="text-xs text-muted">{countdown.label}</p>
-      <ol className="mt-2 flex gap-2" aria-label={countdown.label}>
-        {UNITS.map((unit) => (
-          <li
-            key={unit.key}
-            className="min-w-14 flex-1 rounded-sm border border-orange/30 bg-black/50 px-1 py-1.5 text-center"
-          >
-            <span className="block font-mono text-sm tabular-nums text-white">
-              {countdown[unit.key]}
-            </span>
-            <span className="block text-[10px] tracking-[0.14em] text-orange uppercase">
-              {unit.caption}
-            </span>
+      <ol className="flex items-center gap-1" aria-label={countdown.label}>
+        {UNITS.map((unit, index) => (
+          <li key={unit.key} className="flex items-center gap-1">
+            <div className="flex min-w-11 flex-col items-center bg-[rgba(53,15,15,0.5)] px-3 py-2">
+              <span className="text-lg leading-5 font-medium tracking-[0.04em] text-white tabular-nums">
+                {countdown[unit.key]}
+              </span>
+              <span className="text-[9px] tracking-[0.06em] text-white/80 uppercase">
+                {unit.caption}
+              </span>
+            </div>
+            {index < UNITS.length - 1 ? (
+              <span className="font-mono text-sm font-bold text-white" aria-hidden>
+                :
+              </span>
+            ) : null}
           </li>
         ))}
       </ol>

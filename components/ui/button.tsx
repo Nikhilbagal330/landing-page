@@ -4,16 +4,15 @@ import type { ButtonHTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium tracking-tight transition-colors disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        default:
-          "bg-orange text-white hover:bg-[#ff6a33] active:bg-[#e64500]",
+        default: "bg-orange text-white hover:bg-[#ff5409] active:bg-[#e63e08]",
         outline:
-          "border border-orange/40 bg-transparent text-foreground hover:border-orange hover:bg-orange/10",
+          "border border-orange bg-[linear-gradient(0deg,rgba(0,0,0,0.6),rgba(0,0,0,0.6)),#541400] text-white hover:bg-[#541400]",
         ghost: "text-foreground hover:bg-white/5",
-        dark: "bg-[#2a140c] text-white hover:bg-[#3a1c10]",
+        dark: "bg-[#150a05] text-white hover:bg-[#23120c]",
       },
       size: {
         default: "h-11 px-4",

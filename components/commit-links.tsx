@@ -8,22 +8,23 @@ export function CommitLinks({ commit }: { commit: SaleResponse["commit"] }) {
     <section
       id="commit"
       aria-labelledby="commit-heading"
-      className="rounded-md border border-orange/30 bg-black/40 p-5 sm:p-6"
+      className="p-[22px] shadow-[0_0_122px_-50px_rgba(255,69,9,0.11)]"
+      style={{ background: "linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), #350F0F" }}
     >
-      <h2 id="commit-heading" className="text-lg font-medium tracking-tight">
+      <h2 id="commit-heading" className="px-3 text-lg font-medium text-ink">
         {commit.heading}
       </h2>
-      <ul className="mt-4 divide-y divide-white/10">
+      <ul className="mt-8">
         {commit.links.map((link) => (
           <li
             key={link.id}
             id={`commit-${link.id}`}
-            className="flex items-center justify-between gap-4 py-3.5"
+            className="flex min-h-[52px] items-center justify-between gap-4 px-3"
           >
-            <span className="text-sm text-zinc-300">{link.label}</span>
+            <span className="text-sm text-[#F2F2F2]">{link.label}</span>
             <a
               href={link.href}
-              className="text-sm underline decoration-white/40 underline-offset-4 hover:text-orange hover:decoration-orange"
+              className="text-base text-white/50 underline underline-offset-4 hover:text-white"
               onClick={(event) => {
                 event.preventDefault();
                 toast(link.label, {

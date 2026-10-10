@@ -48,56 +48,89 @@ function SocialIcon({ id }: { id: string }) {
 
 type FooterProps = {
   socials: SaleResponse["socials"];
+  links: { label: string; href: string }[];
   contract: SaleResponse["contract"];
   symbol: string;
   disclaimer: string;
 };
 
-export function SiteFooter({ socials, contract, symbol, disclaimer }: FooterProps) {
+export function SiteFooter({ socials, links, contract, symbol, disclaimer }: FooterProps) {
   return (
-    <footer className="relative z-10 pb-16">
-      <ul className="flex items-center justify-center gap-4 text-zinc-300">
-        {socials.map((social) => (
-          <li key={social.id}>
-            <a
-              href={social.href}
-              aria-label={social.label}
-              target="_blank"
-              rel="noreferrer"
-              className="block rounded-sm p-2 hover:text-orange"
-            >
-              <SocialIcon id={social.id} />
-            </a>
-          </li>
-        ))}
-      </ul>
+    <footer className="bg-black">
+      <div className="mx-auto flex max-w-[1322px] flex-col gap-12 px-8 pt-16 pb-10">
+        <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:justify-between">
+          <div className="w-full max-w-[345px]">
+            <p className="line-clamp-2 max-w-[245px] text-[13.6px] leading-5 text-white/50">
+              {disclaimer}
+            </p>
+            <ul className="mt-3 flex items-center gap-4 text-white/50">
+              {socials.map((social) => (
+                <li key={social.id}>
+                  <a
+                    href={social.href}
+                    aria-label={social.label}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="block hover:text-white"
+                  >
+                    <SocialIcon id={social.id} />
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-12 flex h-[50px] w-full overflow-hidden">
+              <p className="flex min-w-0 flex-1 items-center bg-[#150A05] px-4 text-[10px] text-[#57656C]">
+                {contract.label}
+              </p>
+              <Button
+                className="h-[50px] shrink-0 bg-[#FF5409] px-8 text-[10.5px] font-semibold tracking-[0.16em] hover:bg-orange"
+                onClick={() => {
+                  void navigator.clipboard
+                    .writeText(contract.address)
+                    .then(() => {
+                      toast.success("Contract address copied", {
+                        description: contract.address,
+                      });
+                    })
+                    .catch(() => {
+                      toast.error("Could not copy the contract address");
+                    });
+                }}
+              >
+                {symbol}
+              </Button>
+            </div>
+          </div>
 
-      <div className="mx-auto mt-6 flex w-full max-w-sm overflow-hidden rounded-sm">
-        <p className="flex flex-1 items-center bg-[#2a140c] px-4 font-mono text-sm text-zinc-200">
-          {contract.label}
-        </p>
-        <Button
-          className="rounded-none px-6 tracking-[0.18em]"
-          onClick={() => {
-            void navigator.clipboard
-              .writeText(contract.address)
-              .then(() => {
-                toast.success("Contract address copied", {
-                  description: contract.address,
-                });
-              })
-              .catch(() => {
-                toast.error("Could not copy the contract address");
-              });
-          }}
-        >
-          {symbol}
-        </Button>
+          <div className="flex gap-8 sm:gap-16">
+            <nav aria-label="Footer">
+              <p className="text-lg leading-[21px] font-medium">{symbol}</p>
+              <ul className="mt-6 space-y-2">
+                {links.map((link) => (
+                  <li key={link.href}>
+                    <a href={link.href} className="text-base text-white/50 hover:text-white">
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            <div>
+              <p className="text-lg leading-[21px] font-medium">{symbol}</p>
+              <ul className="mt-6 space-y-2 text-base text-white/50">
+                <li>Lorem ipsum</li>
+                <li>Lorem ipsum</li>
+                <li>Lorem ipsum</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex items-end justify-between gap-8">
+          <p className="max-w-[603px] text-xs leading-5 text-[#A8A8AA]">{disclaimer}</p>
+          <p className="shrink-0 text-sm text-[#A8A8AA]">{symbol}</p>
+        </div>
       </div>
-
-      <p className="mx-auto mt-8 max-w-3xl px-4 text-center text-xs leading-5 text-muted">
-        {disclaimer}
-      </p>
     </footer>
   );
 }
