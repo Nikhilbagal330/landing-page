@@ -30,11 +30,11 @@ type NavbarProps = {
 
 function DemoMark() {
   return (
-    <span className="grid size-[30px] place-items-center rounded-full bg-white">
-      <svg viewBox="0 0 28 28" className="size-[22px]" aria-hidden>
-        <path d="M14 4.6 22.2 14 14 23.4 5.8 14Z" fill="#030303" />
-      </svg>
-    </span>
+    <img
+      src="Frame 2147224717.svg"
+      alt="Logo"
+      className="size-[30px] object-contain"
+    />
   );
 }
 

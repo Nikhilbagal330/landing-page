@@ -1,6 +1,6 @@
 export type SaleStatus = "complete" | "active" | "upcoming";
 
-export type DetailIcon = "grid" | "users" | "file" | "target" | "flag";
+export type DetailIcon = string;
 
 export type SaleResponse = {
   banner: {
@@ -51,7 +51,7 @@ export type SaleResponse = {
     description: string;
     phases: {
       id: string;
-      kicker: string;
+      kicker?: string;
       title: string;
       detail: string;
       status: SaleStatus;
@@ -70,5 +70,5 @@ export type SaleResponse = {
   };
   socials: { id: string; label: string; href: string }[];
   contract: { label: string; address: string };
-  footer: { disclaimer: string };
+  footer: { disclaimer: string, bottomDisclaimer: string };
 };

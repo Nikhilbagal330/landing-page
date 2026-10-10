@@ -43,15 +43,23 @@ export function Hero({ project, hero, countdown }: HeroProps) {
   return (
     <article className="flex flex-col gap-10 pt-2">
       <div className="flex flex-col gap-[27px]">
-        <p className="inline-flex h-7 w-[206px] items-center justify-center border border-orange bg-[rgba(2,6,11,0.26)] text-base tracking-[0.12em] text-orange backdrop-blur-[4px]">
-          {project.badge}
-        </p>
+        <div className="relative flex h-[29px] w-[208px] items-center justify-center">
+          <img
+            src="/images/border.png"
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 h-full w-full"
+          />
+
+          <span className="relative z-10 text-base tracking-[0.12em] text-orange">
+            {project.badge}
+          </span>
+        </div>
         <div className="flex flex-col gap-5">
           <h1 className="text-[40px] leading-[1.05] font-medium tracking-[-0.03em] text-white sm:text-[64px] sm:leading-[67px]">
             {project.headline}
           </h1>
-          <p className="line-clamp-2 text-xl leading-[1.33] text-white/60">
-            {project.description}
+          <p className="text-xl leading-[1.33] text-white/60">            {project.description}
           </p>
         </div>
       </div>

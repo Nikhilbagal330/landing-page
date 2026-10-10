@@ -52,9 +52,10 @@ type FooterProps = {
   contract: SaleResponse["contract"];
   symbol: string;
   disclaimer: string;
+  bottomDisclaimer: string;
 };
 
-export function SiteFooter({ socials, links, contract, symbol, disclaimer }: FooterProps) {
+export function SiteFooter({ socials, links, contract, symbol, disclaimer, bottomDisclaimer }: FooterProps) {
   return (
     <footer className="bg-black">
       <div className="mx-auto flex max-w-[1322px] flex-col gap-12 px-8 pt-16 pb-10">
@@ -97,7 +98,7 @@ export function SiteFooter({ socials, links, contract, symbol, disclaimer }: Foo
                     });
                 }}
               >
-                {symbol}
+                COPY ADDRESS
               </Button>
             </div>
           </div>
@@ -116,19 +117,18 @@ export function SiteFooter({ socials, links, contract, symbol, disclaimer }: Foo
               </ul>
             </nav>
             <div>
-              <p className="text-lg leading-[21px] font-medium">{symbol}</p>
+              <p className="text-lg leading-[21px] font-medium">Resources</p>
               <ul className="mt-6 space-y-2 text-base text-white/50">
-                <li>Lorem ipsum</li>
-                <li>Lorem ipsum</li>
-                <li>Lorem ipsum</li>
+                <li>Documentation</li>
+                <li>Smart Contract Audit</li>
+                <li>Risk Disclosure</li>
               </ul>
             </div>
           </div>
         </div>
 
         <div className="flex items-end justify-between gap-8">
-          <p className="max-w-[603px] text-xs leading-5 text-[#A8A8AA]">{disclaimer}</p>
-          <p className="shrink-0 text-sm text-[#A8A8AA]">{symbol}</p>
+          <p className="max-w-[603px] text-xs leading-5 text-[#A8A8AA]">{bottomDisclaimer}</p>
         </div>
       </div>
     </footer>

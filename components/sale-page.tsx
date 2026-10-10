@@ -56,16 +56,16 @@ export function SalePage() {
   const cardMotion = reduceMotion
     ? {}
     : {
-        initial: { opacity: 0, y: 14 },
-        animate: { opacity: 1, y: 0 },
-        transition: { duration: 0.45, ease: "easeOut" as const },
-      };
+      initial: { opacity: 0, y: 14 },
+      animate: { opacity: 1, y: 0 },
+      transition: { duration: 0.45, ease: "easeOut" as const },
+    };
 
   return (
     <div id="top" className="relative min-h-screen overflow-x-hidden">
       <GridBackground />
       <a
-        href="#sale"
+        href="#home"
         className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:rounded-md focus:bg-orange focus:px-3 focus:py-2"
       >
         Skip to sale
@@ -87,16 +87,28 @@ export function SalePage() {
         <section
           id="sale"
           aria-label="Live IDO"
-          className="mx-auto grid w-full max-w-[1386px] scroll-mt-6 items-start gap-8 px-4 pt-4 pb-16 sm:px-8 lg:grid-cols-[minmax(0,642px)_32px_minmax(0,680px)] lg:justify-center lg:gap-x-0 lg:px-0"
-        >
-          <motion.div {...cardMotion}>
-            <Hero project={data.project} hero={data.hero} countdown={countdown} />
-          </motion.div>
-          <div aria-hidden className="hidden self-stretch lg:flex lg:justify-center">
-            <div className="h-full w-px bg-[#541400]" />
-          </div>
+          className="mx-auto grid w-full max-w-[1248px] scroll-mt-6 items-start gap-8 px-4 pt-4 pb-16 sm:px-8 lg:grid-cols-[minmax(0,580px)_24px_minmax(0,620px)] lg:justify-center lg:gap-x-0 lg:px-0"        >
           <motion.div
             {...cardMotion}
+            className="origin-top-left lg:scale-[0.9]"
+          >
+            <Hero
+              project={data.project}
+              hero={data.hero}
+              countdown={countdown}
+            />
+          </motion.div>
+
+          <div
+            aria-hidden
+            className="hidden self-stretch lg:flex lg:justify-center"
+          >
+            <div className="h-full w-px bg-[#541400]" />
+          </div>
+
+          <motion.div
+            {...cardMotion}
+            className="origin-top-left lg:scale-[0.9]"
             transition={
               reduceMotion
                 ? undefined
@@ -111,12 +123,21 @@ export function SalePage() {
           </motion.div>
         </section>
 
-        <PartnersStrip partners={data.partners} label={`${data.project.symbol} ${data.project.symbol}`} />
+        <div className="relative w-full bg-[#0B0505]">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 border-y border-[#541400]"
+          />
 
+          <PartnersStrip
+            partners={data.partners}
+            label="PARTNERS & BACKERS"
+          />
+        </div>
         <section
           id="timeline"
           aria-labelledby="timeline-heading"
-          className="relative mx-auto max-w-[1386px] scroll-mt-6 px-4 py-20 sm:px-8 lg:px-0"
+          className="relative mx-auto w-full max-w-[1248px] scroll-mt-6 px-4 py-12 sm:px-8 lg:px-0 lg:py-16"
         >
           <div className="relative grid items-start gap-12 lg:grid-cols-[477px_minmax(0,790px)] lg:justify-between lg:gap-x-[120px]">
             <div className="flex flex-col gap-[54px]">
@@ -143,6 +164,7 @@ export function SalePage() {
           contract={data.contract}
           symbol={data.project.symbol}
           disclaimer={data.footer.disclaimer}
+          bottomDisclaimer={data.footer.bottomDisclaimer}
         />
       </main>
       <ConnectDialogs

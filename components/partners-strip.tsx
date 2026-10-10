@@ -16,61 +16,44 @@ export function PartnersStrip({
   partners: SaleResponse["partners"];
   label: string;
 }) {
-  const [first, second] = label.split(" ");
-
   return (
     <section
       id="partners"
-      aria-labelledby="partners-heading"
-      className="relative border-y border-[#531A1A] bg-[rgba(34,3,3,0.33)] backdrop-blur-[12px]"
+      aria-label="Partners and backers"
+      className="relative w-full border-y border-[#531A1A] bg-[#0D0202]"
     >
-      <h2 id="partners-heading" className="sr-only">
-        Partners
-      </h2>
-      <div className="relative mx-auto flex h-[88px] max-w-[1694px] items-center">
-        <p className="hidden w-[180px] shrink-0 px-8 text-[15.7px] leading-[19px] text-white uppercase sm:block">
-          {first}
-          {second ? (
-            <>
-              <br />
-              {second}
-            </>
-          ) : null}
-        </p>
-        <span aria-hidden className="hidden h-14 w-px bg-[#531A1A] sm:block" />
-        <ul className="flex min-w-0 flex-1 items-center justify-between gap-4 overflow-hidden px-4 sm:gap-8 sm:px-8">
+<div className="relative mx-auto flex h-[96px] w-full max-w-[1248px] items-center px-4 sm:px-8 lg:px-0">  <p className="hidden w-[180px] shrink-0 px-6 text-[15px] leading-[19px] text-white uppercase sm:block">
+        {label}
+      </p>
+
+        <span
+          aria-hidden
+          className="hidden h-[72px] w-px shrink-0 bg-[#531A1A] sm:block"
+        />
+
+        <ul className="flex min-w-0 flex-1 items-center justify-between gap-5 overflow-hidden px-4 sm:gap-8 sm:px-8">
           {partners.map((partner) => (
-            <li key={partner.name} className="flex h-14 min-w-0 flex-1 items-center justify-center">
+            <li
+              key={partner.name}
+              className="flex h-14 min-w-0 flex-1 items-center justify-center"
+            >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={partner.src}
                 alt={partner.name}
-                className="partner-logo h-7 w-auto max-w-full object-contain"
+                className="partner-logo h-9 w-auto max-w-full object-contain sm:h-10"
               />
             </li>
           ))}
         </ul>
       </div>
-      <span className="absolute top-0 left-[168px] -translate-y-1/2">
+
+      <span className="absolute top-0 left-[calc((100%-1248px)/2+180px)] hidden -translate-y-1/2 sm:block">
         <PlusMark />
       </span>
-      <span className="absolute bottom-0 left-[168px] translate-y-1/2">
+      <span className="absolute bottom-0 left-[calc((100%-1248px)/2+180px)] hidden translate-y-1/2 sm:block">
         <PlusMark />
       </span>
-      <span className="absolute top-0 right-8 -translate-y-1/2">
-        <PlusMark />
-      </span>
-      <span className="absolute right-8 bottom-0 translate-y-1/2">
-        <PlusMark />
-      </span>
-      <span
-        aria-hidden
-        className="pointer-events-none absolute inset-y-0 left-[180px] hidden w-16 bg-gradient-to-r from-[#0C0202] to-transparent sm:block"
-      />
-      <span
-        aria-hidden
-        className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-[#0D0202] to-transparent"
-      />
     </section>
   );
 }
