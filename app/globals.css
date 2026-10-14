@@ -1,12 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #070708;
-  --foreground: #f4f4f5;
-  --orange: #ff4c00;
-  --muted: #9b9ba4;
-  --card: #0c0c0e;
-  --line: rgba(255, 76, 0, 0.38);
+  --background: #000000;
+  --foreground: #ffffff;
+  --orange: #ff4509;
+  --muted: #bdb1a9;
+  --card: #0b0303;
+  --line: #541400;
+  --ink: #f7f1ec;
 }
 
 @theme inline {
@@ -16,8 +17,9 @@
   --color-muted: var(--muted);
   --color-card: var(--card);
   --color-line: var(--line);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ink: var(--ink);
+  --font-sans: var(--font-inter), "Roobert", Inter, sans-serif;
+  --font-mono: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
 }
 
 html {

@@ -25,7 +25,6 @@ type NavbarProps = {
   name: string;
   links: NavItem[];
   networks: Network[];
-  onConnect: () => void;
 };
 
 function DemoMark() {
@@ -38,13 +37,15 @@ function DemoMark() {
   );
 }
 
-export function Navbar({ name, links, networks, onConnect }: NavbarProps) {
-  const [network, setNetwork] = useState(networks[0]);
+export function Navbar({ name, links, networks }: NavbarProps) {
+  const [network, setNetwork] = useState(networks[0]?.label ?? "DEMO");
+  const [walletOpen, setWalletOpen] = useState(false);
+  const [networkOpen, setNetworkOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <header className="relative z-20">
-      <div className="mx-auto flex h-20 max-w-[1698px] items-center justify-between gap-3 px-4 sm:px-8 lg:h-[122px] xl:px-[156px]">
+      <div className="mx-auto flex h-20 w-full max-w-[1386px] items-center justify-between gap-3 px-4 sm:px-8 lg:h-[122px] lg:px-0">
         <a href="#top" className="flex items-center gap-2">
           <DemoMark />
           <span className="text-xl leading-none font-semibold tracking-tight lg:text-[26px]">{name}</span>
@@ -70,31 +71,87 @@ export function Navbar({ name, links, networks, onConnect }: NavbarProps) {
         </nav>
 
         <div className="flex items-center gap-4">
-          <DropdownMenu>
+          <DropdownMenu open={walletOpen} onOpenChange={setWalletOpen}>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="hidden h-[43px] px-[18px] text-base sm:inline-flex">
-                {network?.label ?? "Network"}
-                <ChevronDown className="size-3.5" aria-hidden />
+              <Button
+                variant="outline"
+                className="hidden h-[43px] w-[181px] border-orange bg-[#220800] px-[18px] text-base font-medium tracking-[-0.01em] sm:inline-flex"
+              >
+                Lorem ipsum
+                <ChevronDown
+                  className={`size-3.5 transition-transform ${walletOpen ? "rotate-180" : ""}`}
+                  aria-hidden
+                />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              {networks.map((item) => (
+            <DropdownMenuContent
+              align="end"
+              className="w-[248px] rounded-none border-orange bg-[#120705] p-2 text-white shadow-[0_0_40px_rgba(255,69,9,0.18)]"
+            >
+              <div className="flex items-center justify-between px-3 py-2 text-sm">
+                <span>Lorem ipsum</span>
+                <span className="text-white/70">Demo</span>
+              </div>
+              {["Lorem ipsum", "Lorem ipsum", "Lorem ipsum"].map((item, index) => (
                 <DropdownMenuItem
-                  key={item.id}
-                  onSelect={() => {
-                    setNetwork(item);
-                    toast(`Network set to ${item.label}`);
-                  }}
+                  key={`${item}-${index}`}
+                  className="rounded-none px-3 py-2.5 text-sm"
+                  onSelect={() => toast(item)}
                 >
-                  {item.label}
+                  {item}
                 </DropdownMenuItem>
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <Button className="h-[43px] px-[18px] text-base" onClick={onConnect}>
-            Connect
-          </Button>
+          <DropdownMenu open={networkOpen} onOpenChange={setNetworkOpen}>
+            <DropdownMenuTrigger asChild>
+              <Button className="hidden h-[43px] w-[164px] bg-orange px-[18px] text-base font-medium tracking-[-0.01em] hover:bg-[#ff5409] sm:inline-flex">
+                [XX]
+                <ChevronDown
+                  className={`size-3.5 transition-transform ${networkOpen ? "rotate-180" : ""}`}
+                  aria-hidden
+                />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              align="end"
+              className="w-[230px] rounded-none border-orange bg-[#120705] p-2 text-white shadow-[0_0_40px_rgba(255,69,9,0.18)]"
+            >
+              <DropdownMenuItem
+                className="flex items-center justify-between rounded-none px-3 py-2.5"
+                onSelect={() => {
+                  setNetwork("DEMO");
+                  toast("Network set to DEMO");
+                }}
+              >
+                <span>DEMO</span>
+                <span className="inline-flex items-center gap-2 text-white/80">
+                  [XX]
+                  {network === "DEMO" ? <span aria-hidden>✓</span> : null}
+                </span>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                className="rounded-none px-3 py-2.5"
+                onSelect={() => toast("Lorem ipsum")}
+              >
+                <span className="mr-2 inline-block size-3.5 border border-white/50 align-middle" />
+                Lorem ipsum
+              </DropdownMenuItem>
+              {networks.slice(0, 1).map((item) => (
+                <DropdownMenuItem
+                  key={item.id}
+                  className="rounded-none px-3 py-2.5"
+                  onSelect={() => {
+                    setNetwork(item.label);
+                    toast(`Network set to ${item.label}`);
+                  }}
+                >
+                  Lorem ipsum
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
 
           <Button
             variant="outline"
@@ -128,25 +185,20 @@ export function Navbar({ name, links, networks, onConnect }: NavbarProps) {
             </ul>
           </nav>
           <div className="mt-4 flex flex-col gap-2">
-            {networks.map((item) => (
-              <Button
-                key={item.id}
-                variant={item.id === network?.id ? "default" : "outline"}
-                onClick={() => {
-                  setNetwork(item);
-                  toast(`Network set to ${item.label}`);
-                }}
-              >
-                {item.label}
-              </Button>
-            ))}
+            <Button
+              variant="outline"
+              className="border-orange bg-[#220800]"
+              onClick={() => toast("Lorem ipsum")}
+            >
+              Lorem ipsum
+            </Button>
             <Button
               onClick={() => {
-                setMenuOpen(false);
-                onConnect();
+                setNetwork("DEMO");
+                toast("Network set to DEMO");
               }}
             >
-              Connect Wallet
+              [XX]
             </Button>
           </div>
         </DialogContent>

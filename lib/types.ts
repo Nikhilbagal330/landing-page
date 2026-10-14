@@ -40,6 +40,7 @@ export type SaleResponse = {
     progressLabel: string;
     raisedDisplay: string;
     hardCapDisplay: string;
+    footnote: string;
     columns: {
       heading: string;
       rows: { label: string; value: string }[];
@@ -62,6 +63,7 @@ export type SaleResponse = {
     label: string;
     value: string;
     hint?: string;
+    valueNote?: string;
     icon: DetailIcon;
   }[];
   commit: {

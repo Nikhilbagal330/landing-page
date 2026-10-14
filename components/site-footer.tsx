@@ -98,18 +98,18 @@ export function SiteFooter({ socials, links, contract, symbol, disclaimer, botto
                     });
                 }}
               >
-                COPY ADDRESS
+                DEMO
               </Button>
             </div>
           </div>
 
-          <div className="flex gap-8 sm:gap-16">
+          <div className="flex gap-16 sm:gap-24">
             <nav aria-label="Footer">
-              <p className="text-lg leading-[21px] font-medium">{symbol}</p>
+              <p className="text-[18.5px] leading-[21px] font-medium">{symbol}</p>
               <ul className="mt-6 space-y-2">
-                {links.map((link) => (
+                {links.slice(0, 2).map((link) => (
                   <li key={link.href}>
-                    <a href={link.href} className="text-base text-white/50 hover:text-white">
+                    <a href={link.href} className="text-[16px] font-medium text-white/80 hover:text-white">
                       {link.label}
                     </a>
                   </li>
@@ -117,19 +117,29 @@ export function SiteFooter({ socials, links, contract, symbol, disclaimer, botto
               </ul>
             </nav>
             <div>
-              <p className="text-lg leading-[21px] font-medium">Resources</p>
-              <ul className="mt-6 space-y-2 text-base text-white/50">
-                <li>Documentation</li>
-                <li>Smart Contract Audit</li>
-                <li>Risk Disclosure</li>
+              <p className="text-[18.5px] leading-[21px] font-medium">DEMO</p>
+              <ul className="mt-6 space-y-2 text-[16px] text-white/70">
+                <li>Lorem ipsum</li>
+                <li>Lorem ipsum</li>
+                <li>Lorem ipsum</li>
               </ul>
             </div>
           </div>
         </div>
 
         <div className="flex items-end justify-between gap-8">
-          <p className="max-w-[603px] text-xs leading-5 text-[#A8A8AA]">{bottomDisclaimer}</p>
+          <p className="max-w-[720px] text-xs leading-5 text-[#A8A8AA]">{bottomDisclaimer}</p>
+          <p className="shrink-0 text-sm text-white/80">[XX]</p>
         </div>
+      </div>
+      <div className="mx-auto h-[180px] max-w-[1386px] overflow-hidden px-4 sm:h-[260px] sm:px-8 lg:h-[320px] lg:px-0">
+        <p
+          aria-hidden
+          className="text-[28vw] leading-none font-semibold tracking-[-0.04em] select-none lg:text-[476px]"
+        >
+          <span className="text-orange">D</span>
+          <span className="text-[rgba(255,69,9,0.1)]">EMO</span>
+        </p>
       </div>
     </footer>
   );

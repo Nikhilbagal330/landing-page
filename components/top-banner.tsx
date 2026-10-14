@@ -33,7 +33,7 @@ export function TopBanner({ message, href, onDismiss }: TopBannerProps) {
           href={href}
           className="inline-flex shrink-0 items-center gap-1.5 font-normal text-white"
         >
-          Read more
+          Demo
           <ArrowRight className="size-4" aria-hidden />
         </a>
       </p>

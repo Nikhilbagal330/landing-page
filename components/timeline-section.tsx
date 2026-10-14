@@ -60,21 +60,21 @@ export function TimelineSection({ timeline, details }: TimelineSectionProps) {
                     />
                     <span>
                       {row.label}
-                      {row.id === "target" && (
+                      {row.hint ? (
                         <span className="mt-1 block text-sm text-[#BDB1A9]">
-                          Hard cap
+                          {row.hint}
                         </span>
-                      )}
+                      ) : null}
                     </span>
                   </span>
                 </th>
                 <td className="py-3 text-right text-base tracking-[0.01em] text-[#F2F2F2]">
                   <div>{row.value}</div>
-                  {row.hint && (
+                  {row.valueNote ? (
                     <div className="mt-1 text-sm text-[#BDB1A9]">
-                      {row.hint}
+                      {row.valueNote}
                     </div>
-                  )}
+                  ) : null}
                 </td>
               </tr>
             );

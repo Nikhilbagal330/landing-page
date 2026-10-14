@@ -1,10 +1,10 @@
 import type { Countdown } from "@/hooks/use-countdown";
 
 const UNITS = [
-  { key: "days", caption: "Days" },
-  { key: "hours", caption: "Hrs" },
-  { key: "minutes", caption: "Min" },
-  { key: "seconds", caption: "Sec" },
+  { key: "days", caption: "DEMO" },
+  { key: "hours", caption: "DEMO" },
+  { key: "minutes", caption: "DEMO" },
+  { key: "seconds", caption: "DEMO" },
 ] as const;
 
 export function CountdownUnits({ countdown }: { countdown: Countdown }) {
@@ -15,9 +15,9 @@ export function CountdownUnits({ countdown }: { countdown: Countdown }) {
           <li key={unit.key} className="flex items-center gap-1">
             <div className="flex min-w-11 flex-col items-center bg-[rgba(53,15,15,0.5)] px-3 py-2">
               <span className="text-lg leading-5 font-medium tracking-[0.04em] text-white tabular-nums">
-                {countdown[unit.key]}
+                [XX]
               </span>
-              <span className="text-[9px] tracking-[0.06em] text-white/80 uppercase">
+              <span className="text-[9px] font-medium tracking-[0.06em] text-white/80">
                 {unit.caption}
               </span>
             </div>
